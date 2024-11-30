@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Technology News</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .news-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .news-article {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .news-article:last-child {
+            border-bottom: none;
+        }
+        .news-article h3 {
+            margin: 0;
+            font-size: 20px;
+        }
+        .news-article a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .news-article a:hover {
+            text-decoration: underline;
+        }
+        .news-article img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .news-article p {
+            margin: 5px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Latest Technology News</h1>
+</header>
+
+<div class="news-container" id="news-container">
+    <h2>Technology Articles</h2>
+    <div id="news-list">
+        <!-- News articles will be injected here -->
+    </div>
+</div>
+
+<script>
+    const API_KEY = '68c0b750af144272be9231b397804168'; // Replace with your actual GNews API key
+    const API_URL = `https://gnews.io/api/v4/top-headlines?topic=technology&lang=en&country=us&max=10&token=${API_KEY}`;
+
+    async function fetchTechnologyNews() {
+        try {
+            const response = await fetch(API_URL);
+            const data = await response.json();
+
+            if (data.articles && data.articles.length > 0) {
+                displayNewsArticles(data.articles);
+            } else {
+                document.getElementById('news-list').innerHTML = 'No technology news found.';
+            }
+        } catch (error) {
+            console.error('Error fetching news:', error);
+            document.getElementById('news-list').innerHTML = 'Failed to fetch news articles.';
+        }
+    }
+
+    function displayNewsArticles(articles) {
+        const newsList = document.getElementById('news-list');
+        newsList.innerHTML = ''; // Clear existing content
+
+        articles.forEach(article => {
+            const articleElement = document.createElement('div');
+            articleElement.classList.add('news-article');
+
+            const title = document.createElement('h3');
+            const link = document.createElement('a');
+            link.href = article.url;
+            link.target = '_blank';
+            link.textContent = article.title;
+            title.appendChild(link);
+
+            const description = document.createElement('p');
+            description.textContent = article.description || 'No description available';
+
+            const image = document.createElement('img');
+            image.src = article.image || 'https://via.placeholder.com/800x400';
+            image.alt = article.title;
+
+            articleElement.appendChild(image);
+            articleElement.appendChild(title);
+            articleElement.appendChild(description);
+            newsList.appendChild(articleElement);
+        });
+    }
+
+    // Fetch the news when the page loads
+    fetchTechnologyNews();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT, Cloud Computing, Sensors & Actuators Quiz | VisionVedha</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            color: #1A73E8;
+            font-size: 2.5rem;
+        }
+        h3 {
+            text-align: center;
+            color: #555;
+        }
+        .quiz-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .question-container {
+            margin-bottom: 20px;
+            font-size: 18px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .options {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .options label {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+        .options input {
+            margin-right: 10px;
+        }
+        #submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #submit-btn:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        #result h2 {
+            color: #4CAF50;
+        }
+        .answer {
+            color: #FF6F61;
+        }
+        @media (max-width: 768px) {
+            .quiz-container {
+                margin: 20px;
+                padding: 15px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>IoT, Cloud Computing, Sensors & Actuators Quiz</h1>
+    <div class="quiz-container">
+        <h3 id="category-name">Select a category</h3>
+        <div id="quiz-container"></div>
+        <button id="submit-btn">Submit Quiz</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const allQuestions = [
+            {
+                "question": "What does IoT stand for?",
+                "correct_answer": "Internet of Things",
+                "incorrect_answers": [
+                    "Internet of Technology", 
+                    "Internet of Things Network", 
+                    "International Operating Technology"
+                ]
+            },
+            {
+                "question": "Which of the following is a sensor used in IoT systems?",
+                "correct_answer": "Temperature Sensor",
+                "incorrect_answers": [
+                    "Light Sensor", 
+                    "Humidity Sensor", 
+                    "Pressure Sensor"
+                ]
+            },
+            {
+                "question": "Which cloud service model provides hardware infrastructure for IoT systems?",
+                "correct_answer": "IaaS (Infrastructure as a Service)",
+                "incorrect_answers": [
+                    "PaaS (Platform as a Service)", 
+                    "SaaS (Software as a Service)", 
+                    "FaaS (Function as a Service)"
+                ]
+            },
+            {
+                "question": "Which of these is an actuator in IoT systems?",
+                "correct_answer": "Motor",
+                "incorrect_answers": [
+                    "Temperature Sensor", 
+                    "Microcontroller", 
+                    "Light Bulb"
+                ]
+            },
+            {
+                "question": "What is the primary function of an actuator in an IoT system?",
+                "correct_answer": "To take physical actions based on received data",
+                "incorrect_answers": [
+                    "To collect data from the environment", 
+                    "To process data", 
+                    "To send data to the cloud"
+                ]
+            },
+            {
+                "question": "What does cloud computing in IoT systems primarily help with?",
+                "correct_answer": "Data storage and processing",
+                "incorrect_answers": [
+                    "Data encryption", 
+                    "Data collection", 
+                    "Data transmission"
+                ]
+            },
+            {
+                "question": "Which of these is commonly used in IoT devices for communication?",
+                "correct_answer": "Wi-Fi",
+                "incorrect_answers": [
+                    "USB", 
+                    "HDMI", 
+                    "VGA"
+                ]
+            },
+            {
+                "question": "Which of these is a sensor commonly used in IoT systems for environmental monitoring?",
+                "correct_answer": "Air Quality Sensor",
+                "incorrect_answers": [
+                    "Temperature Sensor", 
+                    "Motion Sensor", 
+                    "Pressure Sensor"
+                ]
+            },
+            {
+                "question": "What is the role of a gateway in an IoT system?",
+                "correct_answer": "To connect sensors to the cloud",
+                "incorrect_answers": [
+                    "To store data locally", 
+                    "To act as a server", 
+                    "To process data on edge devices"
+                ]
+            },
+            {
+                "question": "Which protocol is widely used for communication in IoT systems?",
+                "correct_answer": "MQTT",
+                "incorrect_answers": [
+                    "HTTP", 
+                    "FTP", 
+                    "TCP/IP"
+                ]
+            },
+            {
+                "question": "What does a sensor do in an IoT system?",
+                "correct_answer": "Detects changes in physical conditions",
+                "incorrect_answers": [
+                    "Processes data", 
+                    "Stores data", 
+                    "Controls the system"
+                ]
+            },
+            {
+                "question": "Which of the following is a key advantage of using IoT in agriculture?",
+                "correct_answer": "Real-time monitoring of crops",
+                "incorrect_answers": [
+                    "Faster crop growth", 
+                    "Automated seed planting", 
+                    "Increased crop size"
+                ]
+            },
+            {
+                "question": "What is edge computing in IoT?",
+                "correct_answer": "Processing data closer to the source of data",
+                "incorrect_answers": [
+                    "Cloud storage of data", 
+                    "Data transmission to the cloud", 
+                    "Large-scale data collection"
+                ]
+            },
+            {
+                "question": "Which of the following is a challenge of IoT systems?",
+                "correct_answer": "Security and privacy",
+                "incorrect_answers": [
+                    "Speed of data transmission", 
+                    "Cost of sensors", 
+                    "Data storage space"
+                ]
+            },
+            {
+                "question": "What is a smart home system an example of?",
+                "correct_answer": "Consumer IoT",
+                "incorrect_answers": [
+                    "Industrial IoT", 
+                    "Agricultural IoT", 
+                    "Medical IoT"
+                ]
+            },
+            {
+                "question": "Which of these IoT protocols is designed for low power and long-range communication?",
+                "correct_answer": "LoRaWAN",
+                "incorrect_answers": [
+                    "Wi-Fi", 
+                    "Bluetooth", 
+                    "Zigbee"
+                ]
+            },
+            {
+                "question": "What is the role of actuators in robotics within IoT systems?",
+                "correct_answer": "To carry out physical tasks based on instructions",
+                "incorrect_answers": [
+                    "To collect data from sensors", 
+                    "To process information", 
+                    "To control the communication between devices"
+                ]
+            },
+            {
+                "question": "What is the most common use of IoT in healthcare?",
+                "correct_answer": "Remote patient monitoring",
+                "incorrect_answers": [
+                    "Automated surgery", 
+                    "Drug manufacturing", 
+                    "Medical research"
+                ]
+            },
+            {
+                "question": "What does a smart sensor typically contain?",
+                "correct_answer": "A microprocessor and communication module",
+                "incorrect_answers": [
+                    "Only a battery", 
+                    "A camera", 
+                    "A screen"
+                ]
+            },
+            {
+                "question": "Which of these is not an example of an IoT application?",
+                "correct_answer": "Television Broadcasting",
+                "incorrect_answers": [
+                    "Smart thermostats", 
+                    "Wearable health monitors", 
+                    "Connected vehicles"
+                ]
+            }
+        ];
+
+        function getRandomQuestions() {
+            const shuffled = allQuestions.sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, 5);
+        }
+
+        let questions = getRandomQuestions();
+        let userAnswers = [];
+
+        function displayQuestions() {
+            const quizContainer = document.getElementById('quiz-container');
+            quizContainer.innerHTML = '';
+            questions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.classList.add('question-container');
+                questionDiv.innerHTML = ` 
+                    <div class="question">${question.question}</div>
+                    <div class="options">
+                        ${generateOptions(question, index)}
+                    </div>
+                `;
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        function generateOptions(question, index) {
+            const options = [...question.incorrect_answers, question.correct_answer];
+            options.sort(() => Math.random() - 0.5);
+            return options.map(option => {
+                return `<label>
+                            <input type="radio" name="question${index}" value="${option}"> ${option}
+                        </label><br>`;
+            }).join('');
+        }
+
+        document.getElementById('submit-btn').addEventListener('click', () => {
+            const resultDiv = document.getElementById('result');
+            let score = 0;
+            let outputHtml = '<h2>Results</h2>';
+            questions.forEach((question, index) => {
+                const selectedOption = document.querySelector(`input[name="question${index}"]:checked`);
+
+                const userAnswer = selectedOption ? selectedOption.value : null;
+                userAnswers[index] = userAnswer;
+
+                if (userAnswer === question.correct_answer) {
+                    score++;
+                } else {
+                    outputHtml += `
+                        <p class="answer">Question: ${question.question}</p>
+                        <p>Your answer: ${userAnswer}</p>
+                        <p>Correct answer: ${question.correct_answer}</p>
+                    `;
+                }
+            });
+
+            outputHtml += <p><strong>Your score: ${score} / 5</strong></p>;
+            resultDiv.innerHTML = outputHtml;
+        });
+
+        displayQuestions();
+    </script>
+</body>
+</html>

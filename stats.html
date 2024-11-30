@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Statistics - VisionVedha</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fb;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #0044cc;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #0044cc;
+        }
+
+        .chart-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 30px 0;
+        }
+
+        .chart {
+            width: 45%;
+            margin: 20px 0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #0044cc;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        VisionVedha - Student Statistics Dashboard
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h1>Student Performance Overview</h1>
+        <p>Track your progress in lectures, tests, and projects below:</p>
+
+        <!-- Charts Section -->
+        <div class="chart-container">
+            <!-- Lectures Chart -->
+            <div class="chart">
+                <canvas id="lecturesChart"></canvas>
+            </div>
+            <!-- Test Scores Chart -->
+            <div class="chart">
+                <canvas id="testScoresChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <!-- Project Completion Chart -->
+            <div class="chart">
+                <canvas id="projectCompletionChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        © 2024 VisionVedha. All Rights Reserved.
+    </div>
+
+    <!-- Chart.js Script -->
+    <script>
+        // Data for Lectures
+        const lecturesData = {
+            labels: ["Mathematics 1", "Applied Physics", "Internet Of Things", "C programming", "Introduction to Civil Engineering"],
+            datasets: [{
+                label: "Lectures Attended",
+                data: [80, 60, 90, 50, 70],
+                backgroundColor: "#0044cc80",
+                borderColor: "#0044cc",
+                borderWidth: 2
+            }]
+        };
+
+        // Data for Test Scores
+        const testScoresData = {
+            labels: ["Mathematics 1", "Applied Physics", "Internet Of Things", "C programming", "Introduction to Civil Engineering"],
+            datasets: [{
+                label: "Test Scores",
+                data: [85, 75, 90, 60, 80],
+                backgroundColor: "#00800080",
+                borderColor: "#008000",
+                borderWidth: 2
+            }]
+        };
+
+        // Data for Project Completion
+        const projectCompletionData = {
+            labels: ["Completed", "In Progress", "Pending"],
+            datasets: [{
+                label: "Project Completion",
+                data: [4, 2, 3],
+                backgroundColor: ["#32CD32", "#FFD700", "#FF6347"],
+                hoverOffset: 4
+            }]
+        };
+
+        // Configurations for the Charts
+        const lecturesChartConfig = {
+            type: 'bar',
+            data: lecturesData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Lectures Attended by Subject'
+                    }
+                }
+            },
+        };
+
+        const testScoresChartConfig = {
+            type: 'line',
+            data: testScoresData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Test Scores Trend'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            },
+        };
+
+        const projectCompletionChartConfig = {
+            type: 'doughnut',
+            data: projectCompletionData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Project Completion Status'
+                    }
+                }
+            },
+        };
+
+        // Rendering the Charts
+        new Chart(document.getElementById('lecturesChart'), lecturesChartConfig);
+        new Chart(document.getElementById('testScoresChart'), testScoresChartConfig);
+        new Chart(document.getElementById('projectCompletionChart'), projectCompletionChartConfig);
+    </script>
+</body>
+</html>

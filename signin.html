@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In / Sign Up</title>
+    <style>
+        /* Header */
+        header {
+            background-color: #004aad;
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header .title {
+            display: flex;
+            align-items: center;
+        }
+
+        header .title h1 {
+            font-size: 3rem;
+            margin-right: 10px;
+        }
+
+        header .title h2 {
+            font-size: 1.2rem;
+        }
+
+        header img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .input-field, .dropdown {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #004aad;
+            color: white;
+            border: none;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #e67e22;
+        }
+        .toggle-link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .toggle-link a {
+            text-decoration: none;
+            color: #004aad;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="title">
+            <h1>VisionVedha</h1>
+            <h2>- Learn with Trends</h2>
+        </div>
+        <img src="logo.jpg" alt="VisionVedha Logo">
+    </header>
+<div class="container">
+    <h2 id="form-title">Sign In</h2>
+
+    <!-- Sign In Form -->
+    <form id="login-form">
+        <input type="email" id="email" class="input-field" placeholder="Email" required>
+        <input type="password" id="password" class="input-field" placeholder="Password" required>
+        <button type="submit" class="btn">Sign In</button>
+    </form>
+
+    <!-- Sign Up Form (Updated) -->
+    <form id="signup-form" style="display: none;">
+        <input type="email" id="signup-email" class="input-field" placeholder="Email" required>
+        <input type="text" id="username" class="input-field" placeholder="Username" required>
+        <input type="password" id="set-password" class="input-field" placeholder="Set Password" required>
+        <input type="password" id="confirm-password" class="input-field" placeholder="Confirm Password" required>
+
+        <select id="course" class="dropdown" required>
+            <option value="">Select Course</option>
+            <option value="Engineering">Engineering</option>
+            <option value="BSc">B.Sc</option>
+            <option value="BCA">BCA</option>
+        </select>
+
+        <select id="branch" class="dropdown" required>
+            <option value="">Select Branch</option>
+        </select>
+
+        <select id="year" class="dropdown" required>
+            <option value="">Select Year</option>
+        </select>
+
+        <select id="semester" class="dropdown" required>
+            <option value="">Select Semester</option>
+        </select>
+
+        <input type="text" id="college-name" class="input-field" placeholder="College Name" required>
+
+        <button type="submit" class="btn">Sign Up</button>
+    </form>
+
+    <p class="toggle-link" id="sign-in-link">
+        Don't have an account? <a href="#" id="toggle-to-signup">Sign Up</a>
+    </p>
+
+    <p class="toggle-link" id="sign-up-link" style="display: none;">
+        Already have an account? <a href="#" id="toggle-to-login">Sign In</a>
+    </p>
+</div>
+
+<script>
+    const toggleToSignup = document.getElementById('toggle-to-signup');
+    const toggleToLogin = document.getElementById('toggle-to-login');
+    const signupForm = document.getElementById('signup-form');
+    const loginForm = document.getElementById('login-form');
+    const formTitle = document.getElementById('form-title');
+    const signInLink = document.getElementById('sign-in-link');
+    const signUpLink = document.getElementById('sign-up-link');
+    const courseDropdown = document.getElementById('course');
+    const branchDropdown = document.getElementById('branch');
+    const yearDropdown = document.getElementById('year');
+    const semesterDropdown = document.getElementById('semester');
+    const passwordField = document.getElementById('set-password');
+    const confirmPasswordField = document.getElementById('confirm-password');
+
+    // Toggle Forms
+    toggleToSignup.addEventListener('click', function (e) {
+        e.preventDefault();
+        signupForm.style.display = 'block';
+        loginForm.style.display = 'none';
+        formTitle.innerText = 'Sign Up';
+        signInLink.style.display = 'none';
+        signUpLink.style.display = 'block';
+    });
+
+    toggleToLogin.addEventListener('click', function (e) {
+        e.preventDefault();
+        loginForm.style.display = 'block';
+        signupForm.style.display = 'none';
+        formTitle.innerText = 'Sign In';
+        signInLink.style.display = 'block';
+        signUpLink.style.display = 'none';
+    });
+
+    // Populate Branch Dropdown based on Course
+    courseDropdown.addEventListener('change', function () {
+        branchDropdown.innerHTML = '<option value="">Select Branch</option>'; // Reset branches
+        yearDropdown.innerHTML = '<option value="">Select Year</option>'; // Reset years
+        semesterDropdown.innerHTML = '<option value="">Select Semester</option>'; // Reset semesters
+
+        const branches = {
+            Engineering: ['AI', 'CS', 'IS', 'ECE', 'ME'],
+            BSc: ['Physics', 'Chemistry', 'Mathematics', 'Biology', 'Statistics'],
+            BCA: ['Software Development', 'Networking', 'Cybersecurity', 'AI & ML', 'Data Science']
+        };
+
+        const selectedCourse = this.value;
+        if (branches[selectedCourse]) {
+            branches[selectedCourse].forEach(branch => {
+                branchDropdown.innerHTML += `<option value="${branch}">${branch}</option>`;
+            });
+
+            const maxYears = selectedCourse === 'Engineering' ? 4 : 3;
+            for (let i = 1; i <= maxYears; i++) {
+                yearDropdown.innerHTML += `<option value="${i}">Year ${i}</option>`;
+            }
+        }
+    });
+
+    // Populate Semester Dropdown based on Year
+    yearDropdown.addEventListener('change', function () {
+        semesterDropdown.innerHTML = '<option value="">Select Semester</option>';
+        const year = parseInt(this.value);
+
+        if (year) {
+            semesterDropdown.innerHTML += `
+                <option value="${year * 2 - 1}">Semester ${year * 2 - 1}</option>
+                <option value="${year * 2}">Semester ${year * 2}</option>
+            `;
+        }
+    });
+
+    // Password Match Validation
+    confirmPasswordField.addEventListener('input', function () {
+        if (confirmPasswordField.value !== passwordField.value) {
+            confirmPasswordField.setCustomValidity("Passwords don't match.");
+        } else {
+            confirmPasswordField.setCustomValidity('');
+        }
+    });
+
+    // Sign-Up Logic
+    signupForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById('signup-email').value;
+        const username = document.getElementById('username').value;
+        const password = passwordField.value;
+        const course = courseDropdown.value;
+        const branch = branchDropdown.value;
+        const year = yearDropdown.value;
+        const semester = semesterDropdown.value;
+        const collegeName = document.getElementById('college-name').value;
+
+        if (email && username && password && course && branch && year && semester && collegeName) {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            if (users.find(user => user.email === email)) {
+                alert('Email is already registered. Please sign in.');
+                return;
+            }
+
+            users.push({ email, username, password, course, branch, year, semester, collegeName });
+            localStorage.setItem('users', JSON.stringify(users));
+            alert('Account created successfully!');
+            window.location.href = 'signin.html';
+        } else {
+            alert('Please fill all fields.');
+        }
+    });
+
+    // Sign-In Logic
+    loginForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+
+        const user = users.find(user => user.email === email && user.password === password);
+
+        if (user) {
+            alert(`Welcome back, ${user.username}!`);
+            localStorage.setItem('loggedInUser', JSON.stringify(user));
+            window.location.href = 'demo.html';
+        } else {
+            alert('Invalid email or password. Please try again.');
+        }
+    });
+</script>
+</body>
+</html>

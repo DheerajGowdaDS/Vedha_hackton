@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionVedha|Dashboard </title>
+    <style>        /* Reset and Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f4f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-weight: bold;
+        }
+
+        /* VisionVedha Toolbar */
+        .toolbar {
+            background-color: #004aad;
+            color: white;
+            padding: 15px 20px;
+            text-align: left;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: #4A90E2;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        /* Projects Grid */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-card-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .project-card h3 {
+            font-size: 1.6rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            font-size: 1rem;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .project-card .button-container {
+            display: flex;
+            justify-content: space-evenly;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .project-card button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+            flex: 1;
+        }
+
+        .project-card .view-details {
+            background-color: #4A90E2;
+            color: white;
+        }
+
+        .project-card .view-details:hover {
+            background-color: #357ABD;
+        }
+
+        .project-card .take-project {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .project-card .take-project:hover {
+            background-color: #218838;
+        }
+        /* Modal Popup */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .modal-content p {
+            color: #555;
+        }
+
+        .close-btn {
+            background: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .close-btn:hover {
+            background: #c0392b;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #4A90E2;
+            color: white;
+            margin-top: 50px;
+        }
+        .logout-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            float: right;
+            font-size: 1rem;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+        .home-icon {
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: inline-block;
+            margin-right: 10px;
+            color: white;
+            vertical-align: middle;
+            transition: color 0.3s ease;
+        }
+        
+        .home-icon:hover {
+            color: #dcdcdc;
+        }
+        
+
+    </style>
+</head>
+<body>
+
+    <!-- VisionVedha Toolbar -->
+    <div class="toolbar">
+        <span class="home-icon" onclick="window.location.href='demo.html'">&#8962;</span>
+        VisionVedha - Dashboard
+        <button class="logout-btn" onclick="handleLogout()">Logout</button>
+    </div>
+    
+    <!-- Header Section -->
+    <header>
+        <h1>Personalized learning platform</h1>
+        <p>Learn with current trending technologies to make you skillfull.</p>
+    </header>
+
+    <!-- Projects Grid Section -->
+    <div class="projects-container">
+        <!-- Project 1 -->
+        <div class="project-card">
+            <img src="lect.png" alt="Project Image">
+            <div class="project-card-content">
+                <h3>Lectures</h3>
+                <p>Learn your subject with trends .</p>
+                <div class="button-container">
+                    <button class="view-details" onclick="showPopup('Lectures', 'Learn in-depth concepts with trending topics!')">View Details</button>
+                    <button class="take-project" onclick="window.location.href='lectures.html'">Start</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+            <img src="proj.png" alt="Project Image">
+            <div class="project-card-content">
+                <h3>Projects</h3>
+                <p>Make and learn how to do the projects suitable for market.</p>
+                <div class="button-container">
+                    <button class="view-details" onclick="showPopup('Projects', 'Explore real time Projects in the market!')">View Details</button>
+                    <button class="take-project" onclick="window.location.href='project.html'">See Projects</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+            <img src="stat.png" alt="Project Image">
+            <div class="project-card-content">
+                <h3>Stats</h3>
+                <p>Know your stats and progress cards.</p>
+                <div class="button-container">
+                    <button class="view-details" onclick="showPopup('Stats', 'See your Stats and Progress!')">View Details</button>
+                    <button class="take-project" onclick="window.location.href='Stats.html'">View Stats</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card">
+            <img src="prof.png" alt="Project Image">
+            <div class="project-card-content">
+                <h3>Profile </h3>
+                <p>View and update your profile to get personalized learning.</p>
+                <div class="button-container">
+                    <button class="view-details" onclick="window.location.href='profile.html'">View Profile</button>
+                    <button class="take-project" onclick="window.location.href='profile.html'">Update Profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Modal -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <h3 id="modal-title">Title</h3>
+        <p id="modal-description">Description</p>
+        <button class="close-btn" onclick="closePopup()">Close</button>
+    </div>
+</div>
+
+<script>
+    // Show Popup
+    function showPopup(title, description) {
+        document.getElementById('modal-title').innerText = title;
+        document.getElementById('modal-description').innerText = description;
+        document.getElementById('modal').style.display = 'flex';
+    }
+
+    // Close Popup
+    function closePopup() {
+        document.getElementById('modal').style.display = 'none';
+    }
+    function handleLogout() {
+        const userConfirmed = confirm("Are you sure you want to logout?");
+        if (userConfirmed) {
+            // Remove user details from localStorage
+            localStorage.removeItem("loggedInUser");
+            localStorage.setItem("logoutInProgress", "true");
+            alert("You have been logged out.");
+            // Redirect to home page
+            window.location.href = "home.html";
+        }
+    }
+    window.addEventListener("beforeunload", (event) => {
+        if (localStorage.getItem("logoutInProgress") === "true") {
+            const confirmationMessage = "You are about to log out. Do you want to continue?";
+            event.preventDefault(); // Required for Chrome compatibility
+            event.returnValue = confirmationMessage; // Required for other browsers
+            return confirmationMessage;
+        }
+    });
+    
+    window.addEventListener("load", () => {
+        // If the user chooses to continue, redirect to the homepage
+        if (localStorage.getItem("logoutInProgress") === "true") {
+            const userConfirmed = confirm("You are about to log out. Do you want to continue?");
+            if (userConfirmed) {
+                window.location.href = "home.html";
+            } else {
+                // Reset the logout flag
+                localStorage.removeItem("logoutInProgress");
+            }
+        }
+    });
+    // Check for logged-in user on page load
+window.addEventListener("load", () => {
+    const loggedInUser = localStorage.getItem("loggedInUser");
+
+    if (!loggedInUser) {
+        // Redirect to the sign-in page if no user is logged in
+        alert("Sign-in required to access the dashboard.");
+        window.location.href = "signin.html";
+    } else if (localStorage.getItem("logoutInProgress") === "true") {
+        // Handle logout in progress scenario
+        const userConfirmed = confirm("You are about to log out. Do you want to continue?");
+        if (userConfirmed) {
+            window.location.href = "home.html";
+        } else {
+            // Reset the logout flag
+            localStorage.removeItem("logoutInProgress");
+        }
+    }
+});
+        
+</script>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 VisionVedha. All Rights Reserved.</p>
+    </div>
+
+</body>
+</html>

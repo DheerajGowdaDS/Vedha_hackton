@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        h1 {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+        }
+
+        .profile-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            text-align: left;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .profile-card h2, .profile-card p {
+            margin: 10px 0;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e67e22;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>User Profile</h1>
+        <div class="profile-card">
+            <h2 id="username">Name: </h2>
+            <p id="email">Email: </p>
+            <p id="course">Course: </p>
+            <p id="branch">Branch: </p>
+            <p id="collegeName">College: </p>
+            <p id="semester">Semester: </p>
+            <p id="year">Year: </p>
+            <button onclick="goBack()">Go Back</button>
+        </div>
+    </div>
+
+    <script>
+        // Fetch user data from localStorage
+        const user = JSON.parse(localStorage.getItem('loggedInUser'));
+
+        // Check if user data exists in localStorage
+        if (user) {
+            document.getElementById('username').textContent = `Name: ${user.username}`;
+            document.getElementById('email').textContent = `Email: ${user.email}`;
+            document.getElementById('course').textContent = `Course: ${user.course}`;
+            document.getElementById('branch').textContent = `Branch: ${user.branch}`;
+            document.getElementById('collegeName').textContent = `College: ${user.collegeName}`;
+            document.getElementById('semester').textContent = `Semester: ${user.semester}`;
+            document.getElementById('year').textContent = `Year: ${user.year}`;
+        } else {
+            // Handle case when user data is not available
+            document.getElementById('username').textContent = 'No user data found.';
+            document.getElementById('email').textContent = '';
+            document.getElementById('course').textContent = '';
+            document.getElementById('branch').textContent = '';
+            document.getElementById('collegeName').textContent = '';
+            document.getElementById('semester').textContent = '';
+            document.getElementById('year').textContent = '';
+        }
+
+        // Go back to the previous page
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionVedha - Learn with Trends</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: #004aad;
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header .title {
+            display: flex;
+            align-items: center;
+        }
+
+        header .title h1 {
+            font-size: 3rem;
+            margin-right: 10px;
+        }
+
+        header .title h2 {
+            font-size: 1.2rem;
+        }
+
+        header img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #0066cc;
+        }
+
+        nav .nav-left {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section (Slider) */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .slider-container {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slider-container img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: none; /* Hide all images initially */
+        }
+
+        .slider-container img.active {
+            display: block; /* Show only the active image */
+        }
+
+        .slider-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .slider-buttons button {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .slider-buttons button:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Main Sections */
+        section {
+            padding: 40px 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #004aad;
+        }
+
+        .section-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            flex: 1 1 calc(33.333% - 20px);
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #004aad;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        footer a {
+            color: #f1c40f;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Articles Section */
+        .article {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 1rem 0;
+            padding: 1.5rem;
+        }
+
+        .article h3 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .article p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .article a {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #0056b3;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .article a:hover {
+            text-decoration: underline;
+        }
+
+        /* Vertical Scroll for Technology and IT Articles */
+#trends .section-content {
+    max-height: 200px; /* Adjust height as needed */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 10px; /* Add padding for scrollbar clearance */
+}
+
+#trends .section-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+#trends .section-content::-webkit-scrollbar-thumb {
+    background-color: #004aad;
+    border-radius: 10px;
+}
+
+#trends .section-content::-webkit-scrollbar-track {
+    background: #f4f4f4;
+}
+/* General Scrollable Section Styling */
+.scrollable-section {
+    max-height: 200px; /* Set maximum height for scrollable content */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 10px; /* Add padding for scrollbar */
+}
+
+/* Custom Scrollbar Styling */
+.scrollable-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scrollable-section::-webkit-scrollbar-thumb {
+    background-color: #004aad;
+    border-radius: 10px;
+}
+
+.scrollable-section::-webkit-scrollbar-track {
+    background: #f4f4f4;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="title">
+            <h1><marquee>VisionVedha<h2>Learn with Trends</h2></marquee></h1>
+        </div>
+        <img src="logo.jpg" alt="VisionVedha Logo">
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-left">Welcome to VisionVedha</div>
+        <ul>
+            <li><a href="trends.html">Current Market News</a></li>
+            <li><a href="internship.html">Internship Opportunities</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="signin.html">Sign Up/Sign In</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="slider-container" id="slider">
+            <img src="img1.png" alt="Slider Image 1" class="active">
+            <img src="img2.png" alt="Slider Image 2">
+            <img src="img3.png" alt="Slider Image 3">
+            <img src="img4.png" alt="Slider Image 4">
+            <img src="img5.png" alt="Slider Image 5">
+        </div>
+        <div class="slider-buttons">
+            <button id="prev">❮</button>
+            <button id="next">❯</button>
+        </div>
+    </section>
+    <section id="trends">
+        <div class="section-title">Technology and IT Articles</div>
+        <div class="scrollable-section">
+            <div class="article">
+                <h3>Generative AI Revolutionizes Industries</h3>
+                <p>Discover how generative AI is transforming technology across sectors.</p>
+                <a href="https://www.techradar.com/news/generative-ai-adoption-grows-transforming-industries">Read More</a>
+            </div>
+            <div class="article">
+                <h3>MIT's Solar-Powered Desalination Breakthrough</h3>
+                <p>Learn about a new sustainable desalination technology developed by MIT engineers.</p>
+                <a href="https://www.techspot.com/news/102080-mit-engineers-develop-solar-powered-desalination-system.html">Read More</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="business">
+        <div class="section-title">Business and Marketing Articles</div>
+        <div class="scrollable-section">
+            <div class="article">
+                <h3>Rise of Green Tech Investments</h3>
+                <p>Explore how green technology is shaping sustainable business practices.</p>
+                <a href="https://www.exclaimer.com/blog/green-tech-investments-sustainable-practices">Read More</a>
+            </div>
+            <div class="article">
+                <h3>Microsoft CEO's Compensation Insights</h3>
+                <p>An in-depth look into the changing compensation dynamics of tech leadership.</p>
+                <a href="https://www.techspot.com/news/102110-microsoft-ceo-satya-nadellas-compensation-increases-despite-pay-cut-request.html">Read More</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer id="contact">
+        <p>&copy; 2024 VisionVedha | Email: <a href="mailto:visionvedha@gmail.com">visionvedha@gmail.com</a></p>
+    </footer>
+
+    <script>
+        const images = document.querySelectorAll('.slider-container img');
+        let currentIndex = 0;
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.remove('active');
+                if (i === index) {
+                    img.classList.add('active');
+                }
+            });
+        }
+
+        document.getElementById('next').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        });
+
+        document.getElementById('prev').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        });
+            function autoScrollSection(sectionSelector) {
+                const section = document.querySelector(sectionSelector);
+                let scrollStep = 1;
+        
+                function autoScroll() {
+                    section.scrollTop += scrollStep;
+                    if (section.scrollTop + section.clientHeight >= section.scrollHeight || section.scrollTop === 0) {
+                        scrollStep *= -1; // Reverse direction at top or bottom
+                    }
+                }
+        
+                setInterval(autoScroll, 50); // Adjust speed if needed
+            }
+        
+            // Apply auto-scroll to both sections
+            autoScrollSection('#trends .scrollable-section');
+            autoScrollSection('#business .scrollable-section');
+        </script>
+        
+    
+
+</body>
+</html>

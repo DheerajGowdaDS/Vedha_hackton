@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concepts - VisionVedha</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .header {
+            background-color: #004aad;
+            color: white;
+            width: 100%;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-top: 80px;
+            width: 85%;
+            height: 100%;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 0 auto;
+        }
+
+        .concepts-panel {
+            width: 250px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .concept-buttons button {
+            background-color: #004aad;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .concept-buttons button:hover {
+            background-color: #0066cc;
+        }
+
+        .video-panel {
+            width: 70%;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lecture-video {
+            margin-bottom: 20px;
+        }
+
+        .lecture-video video {
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        VisionVedha
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Left Panel for Concepts -->
+        <div class="concepts-panel" id="conceptsContainer">
+            <h3>Concepts</h3>
+            <div class="concept-buttons"></div>
+        </div>
+
+        <!-- Center Panel for Video -->
+        <div class="video-panel" id="conceptSection">
+            <div class="lecture-video" id="conceptVideo"></div>
+        </div>
+    </div>
+    
+
+    <script>
+        const conceptsData = {
+            "Mathematics 1": [
+                { id: 1, name: "Polar Coordinates", videoUrl: "video/Mathematics 1/polar coordinates.mp4" },
+                { id: 2, name: "Series Expansion, Multivariable Calculus", videoUrl: "video/Mathematics 1/Series Expansion, Multivariable Calculus.mp4" },
+                { id: 3, name: "Ordinary Differential Equations (ODEs)", videoUrl: "video/Mathematics 1/Ordinary Differential Equations (ODEs).mp4" },
+                { id: 4, name: "Modular Arithmetic", videoUrl: "video/Mathematics 1/Modular Arithmetic.mp4" },
+                { id: 5, name: "Linear Algebra", videoUrl: "video/Mathematics 1/Linear Algebra.mp4" }
+            ],
+            "Applied Physics": [
+                { id: 1, name: "Laser and Optical Fibers", videoUrl: "video/Applied Physics/Laser and Optical Fibers.mp4" },
+                { id: 2, name: "Quantum Mechanics", videoUrl: "video/Applied Physics/Quantum Mechanics.mp4" },
+                { id: 3, name: "Quantum Computing", videoUrl: "video/Applied Physics/Quantum Computing.mp4" },
+                { id: 4, name: "Electrical Properties of Materials", videoUrl: "video/Applied Physics/Electrical Properties of Materials.mp4" },
+                { id: 5, name: "Applications of Physics in Computing", videoUrl: "video/Applied Physics/Applications of Physics in Computing.mp4" }
+            ],
+            "C Programming": [
+                { id: 1, name: "Introduction to C", videoUrl: "video/C Programming/Introduction to C.mp4" },
+                { id: 2, name: "Operators and Control Statements", videoUrl: "video/C Programming/Operators and Control Statements.mp4" },
+                { id: 3, name: "Functions", videoUrl: "video/C Programming/Functions.mp4" },
+                { id: 4, name: "Arrays", videoUrl: "video/C Programming/Arrays.mp4" },
+                { id: 5, name: "Strings, Pointers, and Structures", videoUrl: "video/C Programming/Strings, Pointers, and Structures.mp4" }
+            ],
+            "Internet of Things": [
+                { id: 1, name: "Basics of Networking", videoUrl: "video/Internet of Things/Basics of Networking.mp4" },
+                { id: 2, name: "Emergence of IoT", videoUrl: "video/Internet of Things/Emergence of IoT.mp4" },
+                { id: 3, name: "IoT Sensing and Actuation", videoUrl: "video/Internet of Things/IoT Sensing and Actuation.mp4" },
+                { id: 4, name: "IoT Processing Topologies", videoUrl: "video/Internet of Things/IoT Processing Topologies.mp4" },
+                { id: 5, name: "Cloud Models", videoUrl: "video/Internet of Things/Cloud Models.mp4" },
+                { id: 6, name: "IoT Case Studies and Trends", videoUrl: "video/Internet of Things/IoT Case Studies and Trends.mp4" }
+            ],
+            "Communicative English": [
+                { id: 1, name: "Fundamentals of Communication", videoUrl: "video/Communicative English/Fundamentals of Communication.mp4" },
+                { id: 2, name: "Phonetics", videoUrl: "video/Communicative English/Phonetics.mp4" },
+                { id: 3, name: "Grammar and Vocabulary Part I", videoUrl: "video/Communicative English/Grammar and Vocabulary Part I.mp4" },
+                { id: 4, name: "Grammar and Vocabulary Part II", videoUrl: "video/Communicative English/Grammar and Vocabulary Part II.mp4" },
+                { id: 5, name: "Communication for Employment", videoUrl: "video/Communicative English/Communication for Employment.mp4" }
+            ],
+            "Constitution of India": [
+                { id: 1, name: "Necessity of Constitution", videoUrl: "video/Constitution of India/Necessity of Constitution.mp4" },
+                { id: 2, name: "Preamble", videoUrl: "video/Constitution of India/Preamble.mp4" },
+                { id: 3, name: "Fundamental Rights", videoUrl: "video/Constitution of India/Fundamental Rights.mp4" },
+                { id: 4, name: "Directive Principles", videoUrl: "video/Constitution of India/Directive Principles.mp4" },
+                { id: 5, name: "Judicial System", videoUrl: "video/Constitution of India/Judicial System.mp4" }
+            ],
+            "Innovation and Design Thinking": [
+                { id: 1, name: "Process of Design", videoUrl: "video/Innovation and Design Thinking/Process of Design.mp4" },
+                { id: 2, name: "Tools for Design Thinking", videoUrl: "video/Innovation and Design Thinking/Tools for Design Thinking.mp4" },
+                { id: 3, name: "Design Thinking in IT", videoUrl: "video/Innovation and Design Thinking/Design Thinking in IT.mp4" },
+                { id: 4, name: "Design Thinking for Strategic Innovations", videoUrl: "video/Innovation and Design Thinking/Design Thinking for Strategic Innovations.mp4" },
+                { id: 5, name: "Design Thinking Workshop", videoUrl: "video/Innovation and Design Thinking/Design Thinking Workshop.mp4" }
+            ],
+            "Introduction to Civil Engineering": [
+                { id: 1, name: "Engineering Mechanics", videoUrl: "video/Introduction to Civil Engineering/Engineering Mechanics.mp4" },
+                { id: 2, name: "Surveying and Levelling", videoUrl: "video/Introduction to Civil Engineering/Surveying and Levelling.mp4" },
+                { id: 3, name: "Building Materials and Construction", videoUrl: "video/Introduction to Civil Engineering/Building Materials and Construction.mp4" },
+                { id: 4, name: "Strength of Materials", videoUrl: "video/Introduction to Civil Engineering/Strength of Materials.mp4" },
+                { id: 5, name: "Fluid Mechanics", videoUrl: "video/Introduction to Civil Engineering/Fluid Mechanics.mp4" }
+            ]
+        };
+        
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const subject = urlParams.get('subject');
+        const conceptsContainer = document.getElementById('conceptsContainer');
+        const conceptSection = document.getElementById('conceptSection');
+        const conceptVideo = document.getElementById('conceptVideo');
+        const conceptButtons = document.querySelector('.concept-buttons');
+
+        if (subject && conceptsData[subject]) {
+            // Fill concepts buttons dynamically based on selected subject
+            conceptsData[subject].forEach((concept, index) => {
+                const button = document.createElement('button');
+                button.innerText = concept.name;
+                button.onclick = () => {
+                    conceptVideo.innerHTML = `<video controls><source src="${concept.videoUrl}" type="video/mp4">Your browser does not support the video tag.</video>`;
+                };
+                conceptButtons.appendChild(button);
+        
+                // Automatically click the first button
+                if (index === 0) {
+                    button.click();
+                }
+            });
+        }
+        
+    </script>
+</body>
+</html>

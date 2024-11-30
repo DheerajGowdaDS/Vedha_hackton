@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subjects - VisionVedha</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #333;
+            font-weight: bold;
+            font-size: 2.5rem;
+            margin-top: 40px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        /* Header */
+        .header {
+            background-color: #004aad;
+            color: white;
+            width: 100%;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .header .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .header .logo i {
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+        .header .logout-button {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .header .logout-button:hover {
+            background-color: #cc0000;
+        }
+                
+        /* Main Content Layout */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 90%;
+            margin-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        /* Subject Panel */
+        .subject-panel {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 280px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .subject-panel:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .subject-panel h2 {
+            color: #333;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .subject-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .subject-buttons button {
+            background-color: #004aad;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            width: 100%;
+        }
+
+        .subject-buttons button:hover {
+            background-color: #0066cc;
+            transform: translateY(-5px);
+        }
+
+        .subject-panel .icon {
+            font-size: 3rem;
+            color: #004aad;
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <i class="fa fa-home"></i> <!-- Home Icon -->
+           Learn | VisionVedha
+        </div>
+        <button class="logout-button" onclick="logout()">Logout</button>
+    </div>
+    
+
+    <div class="container">
+        <!-- Subject Panels -->
+        <div class="subject-panel">
+            <div class="icon">📐</div>
+            <h2>Mathematics 1</h2>
+            <div class="subject-buttons">
+                <button onclick="viewSyllabus('Mathematics 1')">View Syllabus</button>
+                <button onclick="takeLectures('Mathematics 1')">Take Lectures</button>
+                <button onclick="takeTest('Mathematics 1')">Take Test</button>
+            </div>
+        </div>
+    
+        <div class="subject-panel">
+            <div class="icon">🔬</div>
+            <h2>Applied Physics</h2>
+            <div class="subject-buttons">
+                <button onclick="viewSyllabus('Applied Physics')">View Syllabus</button>
+                <button onclick="takeLectures('Applied Physics')">Take Lectures</button>
+                <button onclick="takeTest('Applied Physics')">Take Test</button>
+            </div>
+        </div>
+    
+        <div class="subject-panel">
+            <div class="icon">🌐</div>
+            <h2>Internet of Things</h2>
+            <div class="subject-buttons">
+                <button onclick="viewSyllabus('Internet of Things')">View Syllabus</button>
+                <button onclick="takeLectures('Internet of Things')">Take Lectures</button>
+                <button onclick="takeTest('Internet of Things')">Take Test</button>
+            </div>
+        </div>
+    
+        <div class="subject-panel">
+            <div class="icon">💻</div>
+            <h2>C Programming</h2>
+            <div class="subject-buttons">
+                <button onclick="viewSyllabus('C Programming')">View Syllabus</button>
+                <button onclick="takeLectures('C Programming')">Take Lectures</button>
+                <button onclick="takeTest('C Programming')">Take Test</button>
+            </div>
+        </div>
+    
+        <div class="subject-panel">
+            <div class="icon">🏗️</div>
+            <h2>Introduction to Civil Engineering</h2>
+            <div class="subject-buttons">
+                <button onclick="viewSyllabus('Introduction to Civil Engineering')">View Syllabus</button>
+                <button onclick="takeLectures('Introduction to Civil Engineering')">Take Lectures</button>
+                <button onclick="takeTest('Introduction to Civil Engineering')">Take Test</button>
+            </div>
+        </div>
+    
+        <div class="subject-panel">
+            <div class="icon">🗣️</div>
+            <h2>Communicative English</h2>
+            <div class="subject-buttons">
+                <button onclick="viewSyllabus('Communicative English')">View Syllabus</button>
+                <button onclick="takeLectures('Communicative English')">Take Lectures</button>
+                <button onclick="takeTest('Communicative English')">Take Test</button>
+            </div>
+        </div>
+    
+        <div class="subject-panel">
+            <div class="icon">📜</div>
+            <h2>Constitution of India</h2>
+            <div class="subject-buttons">
+                <button onclick="viewSyllabus('Constitution of India')">View Syllabus</button>
+                <button onclick="takeLectures('Constitution of India')">Take Lectures</button>
+                <button onclick="takeTest('Constitution of India')">Take Test</button>
+            </div>
+        </div>
+    
+        <div class="subject-panel">
+            <div class="icon">💡</div>
+            <h2>Innovation and Design Thinking</h2>
+            <div class="subject-buttons">
+                <button onclick="viewSyllabus('Innovation and Design Thinking')">View Syllabus</button>
+                <button onclick="takeLectures('Innovation and Design Thinking')">Take Lectures</button>
+                <button onclick="takeTest('Innovation and Design Thinking')">Take Test</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function viewSyllabus(subject) {
+            const url = 'syllabus/' + subject.replace(/\s+/g, '-') + '.pdf';
+            if (subject) {
+                window.location.href = url;
+            } else {
+                alert('Syllabus not available.');
+            }
+        }
+        
+        function takeLectures(subject) {
+            // Redirecting to video lectures page with subject as a query parameter
+            window.location.href = 'video_lect.html?subject=' + encodeURIComponent(subject);
+        }
+        function takeTest(subject) {
+            // Redirecting to test page with subject as a query parameter
+            window.location.href = 'test.html?subject=' + encodeURIComponent(subject);
+        }
+        function logout() {
+            // Redirect to the login page or handle logout logic here
+            window.location.href = 'login.html'; // Example of redirecting to login page
+        }
+        
+    </script>
+
+</body>
+</html>

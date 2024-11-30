@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Agriculture Automation Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #2d8b94;
+            text-align: center;
+        }
+        .week-step {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        h3 {
+            color: #2d8b94;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #2d8b94;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #1d7b74;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        input[type="file"] {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Smart Agriculture Automation Project</h1>
+    
+    <!-- Introduction Section -->
+    <div id="project-introduction">
+        <h2>Welcome to Your Project!</h2>
+        <p>This project is divided into 4 weeks. You'll complete tasks, upload your work, and get feedback after each step. Follow the instructions, and move to the next step once you complete the current one.</p>
+        <button id="start-project" onclick="startProject()">Start Project</button>
+    </div>
+
+    <!-- Week 1: Set up IoT Devices -->
+    <div id="week1" class="week-step" style="display: none;">
+        <h3>Week 1: Set up IoT Devices</h3>
+        <p>Your task is to deploy IoT devices to measure temperature, humidity, and soil moisture. Please follow these steps:</p>
+        <ul>
+            <li>Choose your IoT platform (Raspberry Pi/Arduino/ESP32)</li>
+            <li>Set up sensors to collect data</li>
+            <li>Upload your data to the cloud</li>
+        </ul>
+        <label for="week1-upload">Upload your Week 1 work (photos of the setup, sensor code, etc.):</label>
+        <input type="file" id="week1-upload" />
+        <button onclick="submitWeek(1)">Submit Week 1</button>
+    </div>
+
+    <!-- Week 1 Update: Troubleshooting -->
+    <div id="week1-update" class="week-step" style="display: none;">
+        <h3>Week 1 Update: Troubleshooting</h3>
+        <p>After your initial setup, make sure to troubleshoot any issues. Test your devices to ensure they are sending accurate data to the cloud.</p>
+        <label for="week1-update-upload">Upload your troubleshooting results or code modifications:</label>
+        <input type="file" id="week1-update-upload" />
+        <button onclick="submitWeek(2)">Submit Week 1 Update</button>
+    </div>
+
+    <!-- Week 2: Data Collection and Analysis -->
+    <div id="week2" class="week-step" style="display: none;">
+        <h3>Week 2: Data Collection and Analysis</h3>
+        <p>Your task is to analyze the data you collected in Week 1. Here’s how to proceed:</p>
+        <ul>
+            <li>Process your IoT data using Python or a cloud-based tool</li>
+            <li>Create graphs and charts to visualize patterns in the data</li>
+            <li>Look for anomalies that could indicate potential problems</li>
+        </ul>
+        <label for="week2-upload">Upload your Week 2 work (code, analysis, and visualizations):</label>
+        <input type="file" id="week2-upload" />
+        <button onclick="submitWeek(3)">Submit Week 2</button>
+    </div>
+
+    <!-- Week 2 Update: Analyzing Data -->
+    <div id="week2-update" class="week-step" style="display: none;">
+        <h3>Week 2 Update: Analyzing Data</h3>
+        <p>Review your data analysis and refine your approach. Ensure the data is accurate and ready for visual interpretation.</p>
+        <label for="week2-update-upload">Upload your Week 2 update (refined analysis, visualizations):</label>
+        <input type="file" id="week2-update-upload" />
+        <button onclick="submitWeek(4)">Submit Week 2 Update</button>
+    </div>
+
+    <!-- Week 3 and Week 4 to be added similarly -->
+    <!-- Week 4 Final submission -->
+    <div id="week4" class="week-step" style="display: none;">
+        <h3>Week 4: Finalizing the Project</h3>
+        <p>Now that you have gathered and analyzed your data, it's time to finalize the project:</p>
+        <ul>
+            <li>Integrate your data collection system with automated alerts</li>
+            <li>Generate reports on your findings</li>
+            <li>Finalize your project documentation</li>
+        </ul>
+        <label for="week4-upload">Upload your final project work:</label>
+        <input type="file" id="week4-upload" />
+        <button onclick="submitWeek(5)">Submit Final Project</button>
+    </div>
+</div>
+
+<script>
+    let currentStep = 0;
+
+    function startProject() {
+        document.getElementById('project-introduction').style.display = 'none';
+        document.getElementById('week1').style.display = 'block';
+        currentStep = 1;
+    }
+
+    function submitWeek(week) {
+        if (week === 1) {
+            document.getElementById('week1').style.display = 'none';
+            document.getElementById('week1-update').style.display = 'block';
+        } else if (week === 2) {
+            document.getElementById('week1-update').style.display = 'none';
+            document.getElementById('week2').style.display = 'block';
+        } else if (week === 3) {
+            document.getElementById('week2').style.display = 'none';
+            document.getElementById('week2-update').style.display = 'block';
+        } else if (week === 4) {
+            document.getElementById('week2-update').style.display = 'none';
+            document.getElementById('week4').style.display = 'block';
+        } else if (week === 5) {
+            alert('Final project submitted successfully!');
+        }
+    }
+</script>
+
+</body>
+</html>
